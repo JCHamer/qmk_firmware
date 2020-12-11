@@ -4,13 +4,13 @@
 #include "version.h"
 
 enum custom_layers {
-  _COLEMAK,
+  _QWERTY,
   _FUNC,
   _NUM,
 };
 
 enum custom_keycodes {
-  COLEMAK = SAFE_RANGE,
+  QWERTY = SAFE_RANGE,
   FUNC,
   NUM,
   EPRM,
@@ -23,11 +23,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,---------------------------------------------.           ,---------------------------------------------.
  * |   =+   |  1! |  2@ |  3# |  4$ |  5% |  9(  |           |  0)  |  6^ |  7& |  8* |  9( |  0) |    -_  |
  * |--------+-----+-----+-----+-----+------------|           |------+-----+-----+-----+-----+-----+--------|
- * |  Tab   |  Q  |  W  |  F  |  P  |  G  |  [{  |           |  ]}  |  J  |  L  |  U  |  Y  |  ;  |   \|   |
+ * |  Tab   |  Q  |  W  |  E  |  R  |  T  |  [{  |           |  ]}  |  Y  |  U  |  I  |  O  |  P  |   \|   |
  * |--------+-----+-----+-----+-----+-----|      |           |      |-----+-----+-----+-----+-----+--------|
- * | CAPSLK |  A  |  R  |  S  |  T  |  D  |------|           |------|  H  |  N  |  E  |  I  |  O  |   '"   |
+ * | CAPSLK |  A  |  S  |  D  |  F  |  G  |------|           |------|  H  |  J  |  K  |  L  |  ;  |   '"   |
  * |--------+-----+-----+-----+-----+-----| FUNC |           | FUNC |-----+-----+-----+-----+-----+--------|
- * | LShift |  Z  |  X  |  C  |  V  |  B  | (MO) |           | (MO) |  K  |  M  |  ,< |  .> |  /? | RShift |
+ * | LShift |  Z  |  X  |  C  |  V  |  B  | (MO) |           | (MO) |  N  |  M  |  ,< |  .> |  /? | RShift |
  * `--------+-----+-----+-----+-----+------------'           `------------+-----+-----+-----+-----+--------'
  *   |  `~  |  \| |LCTRL| LGUI| LALT|                                     |Left |Down | Up  |Right| RALT |
  *   `------------------------------'                                     `------------------------------'
@@ -39,11 +39,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                              |    |     |L-NUM |          |  DEL |     |     |
  *                              `-----------------'          `------------------'
  */
-[_COLEMAK] = LAYOUT_ergodox(
+[_QWERTY] = LAYOUT_ergodox(
   // left hand
    KC_EQL,   KC_1,    KC_2,    KC_3,    KC_4,    KC_5, KC_9,
-   KC_TAB,   KC_Q,    KC_W,    KC_F,    KC_P,    KC_G, KC_LBRACKET,
-  KC_CLCK,   KC_A,    KC_R,    KC_S,    KC_T,    KC_D,
+   KC_TAB,   KC_Q,    KC_W,    KC_E,    KC_R,    KC_T, KC_LBRACKET,
+  KC_CLCK,   KC_A,    KC_S,    KC_D,    KC_F,    KC_G,
   KC_LSFT,   KC_Z,    KC_X,    KC_C,    KC_V,    KC_B, FUNC,
    KC_GRV,KC_BSLS, KC_LCTL, KC_LGUI, KC_LALT,
 
@@ -53,9 +53,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   // right hand
     KC_0,      KC_6,    KC_7,  KC_8,    KC_9,    KC_0,        KC_MINS,
-  KC_RBRACKET, KC_J,    KC_L,  KC_U,    KC_Y,    KC_SCOLON,   KC_BSLS,
-               KC_H,    KC_N,  KC_E,    KC_I,    KC_O,        KC_QUOTE,
-  FUNC,        KC_K,    KC_M,  KC_COMM, KC_DOT,  KC_SLSH,     KC_RSFT,
+  KC_RBRACKET, KC_Y,    KC_U,  KC_I,    KC_O,    KC_P,        KC_BSLS,
+               KC_H,    KC_J,  KC_K,    KC_L,    KC_SCOLON,        KC_QUOTE,
+  FUNC,        KC_N,    KC_M,  KC_COMM, KC_DOT,  KC_SLSH,     KC_RSFT,
                      KC_LEFT,  KC_DOWN, KC_UP,   KC_RIGHT,    KC_RALT,
 
   KC_PGUP, KC_RCTL,
@@ -187,9 +187,9 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    case COLEMAK:
+    case QWERTY:
       if (record->event.pressed) {
-        set_single_persistent_default_layer(_COLEMAK);
+        set_single_persistent_default_layer(_QWERTY);
       }
       return false;
     case FUNC:
@@ -240,7 +240,6 @@ void matrix_scan_user(void) {
   ergodox_led_func_off();
   ergodox_led_num_off();
   ergodox_led_adjust_off();
-  ergodox_led_caps_off();
 
   switch (layer) {
     case _FUNC:
@@ -250,8 +249,4 @@ void matrix_scan_user(void) {
       ergodox_led_num_on();
       break;
   }
-
-  /*if (usb_led & (1 << USB_LED_CAPS_LOCK)) {
-	  ergodox_led_caps_on();
-  }*/
 };

@@ -310,11 +310,6 @@ void ergodox_led_adjust_on(void){
   visualizer_set_user_data(&user_data_keyboard);
 }
 
-void ergodox_led_caps_on(void){
-  user_data_keyboard.led_on |= (1u << 3);
-  visualizer_set_user_data(&user_data_keyboard);
-}
-
 void ergodox_board_led_off(void){
   // No board led support
 }
@@ -331,11 +326,6 @@ void ergodox_led_num_off(void){
 
 void ergodox_led_adjust_off(void){
   user_data_keyboard.led_on &= ~(1u << 2);
-  visualizer_set_user_data(&user_data_keyboard);
-}
-
-void ergodox_led_caps_off(void){
-  user_data_keyboard.led_on &= ~(1u << 3);
   visualizer_set_user_data(&user_data_keyboard);
 }
 

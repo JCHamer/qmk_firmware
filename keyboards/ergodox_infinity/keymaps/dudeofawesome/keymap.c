@@ -23,6 +23,7 @@ enum custom_keycodes {
   COLEMAK,
   LOWER,
   RAISE,
+  ADJUST,
   GAME,
   MOUSE,
   EPRM,
