@@ -18,7 +18,8 @@
 #define VISUALIZER_H_
 
 //#include "visualizer.h"
-#include "led.h"
+//#include "led.h"
+#include <stdint.h>
 
 void ergodox_led_func_on (void);
 void ergodox_led_num_on (void);

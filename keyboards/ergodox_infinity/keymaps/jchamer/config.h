@@ -6,6 +6,6 @@
 #include "../../config.h"
 #include "jchamer.h"
 
-#include "./visualizer.h"
+//#include "./visualizer.h"
 
 #endif
