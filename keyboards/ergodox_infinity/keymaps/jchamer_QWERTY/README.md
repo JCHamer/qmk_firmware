@@ -1,5 +1,7 @@
 # Jonathan's Mod of DudeOfAwesome's ErgoDox Infinity Layout
 
+Tapping used from the Gordon ErgoDoxInfinity Layout.
+
 A basic ErgoDox layout with a Colemak and QWERTY base as well as numpad and function layers.
 
 ![ErgoDox Layout](https://i.imgur.com/ae0Phzb.png)

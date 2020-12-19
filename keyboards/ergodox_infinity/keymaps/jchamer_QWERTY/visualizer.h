@@ -17,16 +17,19 @@
 #ifndef VISUALIZER_H_
 #define VISUALIZER_H_
 
-#include "visualizer.h"
-#include "led.h"
+//#include "visualizer.h"
+//#include "led.h"
+#include <stdint.h>
 
 void ergodox_led_func_on (void);
 void ergodox_led_num_on (void);
 void ergodox_led_adjust_on (void);
+void ergodox_led_caps_on(void);
 
 void ergodox_led_func_off (void);
 void ergodox_led_num_off (void);
 void ergodox_led_adjust_off (void);
+void ergodox_led_caps_off(void);
 
 void ergodox_led_func_set (uint8_t n);
 void ergodox_led_num_set (uint8_t n);
