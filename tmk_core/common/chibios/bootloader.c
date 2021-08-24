@@ -103,7 +103,11 @@ void enter_bootloader_mode_if_requested(void) {
 #        define SCB_AIRCR_VECTKEY_WRITEMAGIC 0x05FA0000
 const uint8_t              sys_reset_to_loader_magic[] = "\xff\x00\x7fRESET TO LOADER\x7f\x00\xff";
 __attribute__((weak)) void bootloader_jump(void) {
-    __builtin_memcpy((void *)VBAT, (const void *)sys_reset_to_loader_magic, sizeof(sys_reset_to_loader_magic));
+	// -- FIX Start 20210814jhamermesh
+	void *volatile vbat = (void *)VBAT;
+    __builtin_memcpy(vbat, (const void *)sys_reset_to_loader_magic, sizeof(sys_reset_to_loader_magic));
+    //__builtin_memcpy((void *)VBAT, (const void *)sys_reset_to_loader_magic, sizeof(sys_reset_to_loader_magic));
+	// -- FIX END 20210814jhamermesh
     // request reset
     SCB->AIRCR = SCB_AIRCR_VECTKEY_WRITEMAGIC | SCB_AIRCR_SYSRESETREQ_Msk;
 }
