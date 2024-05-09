@@ -2,7 +2,8 @@
 #include "debug.h"
 #include "action_layer.h"
 #include "version.h"
-#include "visualizer.h"
+//#include "visualizer.h"
+#include "ergodox_infinity.h"
 
 enum custom_layers {
   _COLEMAK,
@@ -42,8 +43,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_COLEMAK] = LAYOUT_ergodox(
   // left hand
 	KC_EQL,   KC_1,    KC_2,    KC_3,    KC_4,  KC_5, KC_PGUP,
-	KC_TAB,   KC_Q,    KC_W,    KC_F,    KC_P,  KC_G, KC_LBRACKET,
-   KC_CLCK,   KC_A,    KC_R,    KC_S,    KC_T,  KC_D,
+	KC_TAB,   KC_Q,    KC_W,    KC_F,    KC_P,  KC_G, KC_LBRC,
+   KC_CAPS,   KC_A,    KC_R,    KC_S,    KC_T,  KC_D,
    KC_LSFT,   KC_Z,    KC_X,    KC_C,    KC_V,  KC_B, LT(_FUNC, KC_HOME),
 	KC_GRV,KC_BSLS, KC_LCTL, KC_LGUI, KC_LALT,
 
@@ -53,7 +54,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   // right hand
       KC_PGDN,			KC_6,    KC_7,  KC_8,    KC_9,    KC_0,        KC_MINS,
-  KC_RBRACKET,			KC_J,	 KC_L,  KC_U,    KC_Y,    KC_SCOLON,   KC_BSLS,
+      KC_RBRC,			KC_J,	 KC_L,  KC_U,    KC_Y,    KC_SCLN,     KC_BSLS,
 						KC_H,    KC_N,  KC_E,    KC_I,    KC_O,        KC_QUOTE,
   LT(_FUNC, KC_END),	KC_K,    KC_M,  KC_COMM, KC_DOT,  KC_SLSH,     KC_RSFT,
                      KC_LEFT,  KC_DOWN, KC_UP,   KC_RIGHT,    KC_RALT,
@@ -133,9 +134,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_FUNC] = LAYOUT_ergodox(
 	// left hand
    _______,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,  KC_F11,
-   _______, _______, _______, _______, _______,  BL_INC, _______,
+   _______, _______, _______, _______, _______,   BL_UP, _______,
    _______, _______, KC_EJCT, KC_PSCR, KC_CALC, BL_TOGG,
-   _______, _______, _______, _______, _______,  BL_DEC, _______,
+   _______, _______, _______, _______, _______, BL_DOWN, _______,
    _______, _______, _______, _______, _______,
 												  _______, _______,
 														   _______,
@@ -175,7 +176,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_NUM] = LAYOUT_ergodox(
   // left hand
-   RESET, _______, _______, _______, _______, _______,   DEBUG,
+ _______, _______, _______, _______, _______, _______, _______,
  _______, KC_HOME,   KC_UP,  KC_END, KC_PGUP, _______, _______,
  _______, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN, _______,
 	VRSN, KC_PSLS, KC_PAST, KC_PMNS, KC_PPLS, KC_PENT, _______,
@@ -186,7 +187,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                       _______, _______, _______,
 
   // right hand
-  KC_NLCK, KC_NO, KC_NO, KC_PSLS, KC_PAST, KC_PMNS, _______,
+   KC_NUM, KC_NO, KC_NO, KC_PSLS, KC_PAST, KC_PMNS, _______,
   _______, KC_NO, KC_P7, KC_P8,   KC_P9,   KC_PPLS, _______,
            KC_NO, KC_P4, KC_P5,   KC_P6,   KC_PPLS, _______,
   _______, KC_NO, KC_P1, KC_P2,   KC_P3,   KC_PENT, _______,
@@ -199,6 +200,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
+/*
 const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
 {
   // MACRODOWN only works in this function
@@ -216,6 +218,7 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
   }
   return MACRO_NONE;
 };
+*/
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
@@ -246,20 +249,21 @@ void matrix_init_user(void) {
  * Runs constantly in the background, in a loop.
  */
 void matrix_scan_user(void) {
-  uint8_t layer = biton32(layer_state);
+  uint8_t layer = get_highest_layer(layer_state);
 
   ergodox_board_led_off();
-  ergodox_led_func_off();
-  ergodox_led_num_off();
-  ergodox_led_adjust_off();
-  ergodox_led_caps_off();
+  ergodox_right_led_1_off();
+  ergodox_right_led_2_off();
+  ergodox_right_led_3_off();
 
   switch (layer) {
     case _FUNC:
-      ergodox_led_func_on();
+      ergodox_right_led_1_on();
+      ergodox_infinity_lcd_color(0, 30, 200);
       break;
     case _NUM:
-      ergodox_led_num_on();
+      ergodox_right_led_2_on();
+      ergodox_infinity_lcd_color(220, 120, 0);
       break;
   }
 };

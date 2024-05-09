@@ -2,17 +2,14 @@
 
 Tapping used from the Gordon ErgoDoxInfinity Layout.
 
-A basic ErgoDox layout with a Colemak and QWERTY base as well as numpad and function layers.
-
-![ErgoDox Layout](https://i.imgur.com/ae0Phzb.png)
+A basic ErgoDox layout with a Colemak base as well as numpad and function layers.
 
 ## Features
 
 - Base Layers
     - Colemak
-    - QWERTY
+- Function layer
 - Numpad layer
-    ![numpad layer](https://i.imgur.com/oHDYpzf.png)
 - LCD colors are linked together, like the default KLL firmware
 
 ## Building and flashing

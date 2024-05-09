@@ -1,16 +1,12 @@
 #ifndef CONFIG_USER_H
 #define CONFIG_USER_H
 
-#include "../../config.h"
-//#include "jchamer.h"
+//#include "../../config.h"
 
-//#include "./visualizer.h"
-
-#undef  IGNORE_MOD_TAP_INTERRUPT
-#define IGNORE_MOD_TAP_INTERRUPT
-
-#undef  PERMISSIVE_HOLD
+//#undef  PERMISSIVE_HOLD
 // #define PERMISSIVE_HOLD
+
+#define EE_HANDS
 
 #define ONESHOT_TAP_TOGGLE       2
 
