@@ -77,10 +77,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                        LSFT_T(KC_SPACE), LT(_MVMT, KC_ESC), _______,
 
   // right hand
-      _______,		KC_6,    KC_7,     KC_8,    KC_9,    KC_0, KC_MINS,
-      _______,		KC_J,	 KC_L,     KC_U,    KC_Y, KC_SCLN, KC_BSLS,
-					KC_H,    KC_N,     KC_E,    KC_I,    KC_O,KC_QUOTE,
- LT(_MODS, KC_END),	KC_K,    KC_M,  KC_COMM,  KC_DOT, KC_SLSH, KC_RSFT,
+      _______,  KC_6,    KC_7,     KC_8,    KC_9,    KC_0, LT(_MODS, KC_MINS),
+      _______,	KC_J,	 KC_L,     KC_U,    KC_Y, KC_SCLN,      RGUI(KC_BSLS),
+				KC_H,    KC_N,     KC_E,    KC_I,    KC_O,     RCTL(KC_QUOTE),
+      _______,	KC_K,    KC_M,  KC_COMM,  KC_DOT, KC_SLSH,            KC_RBRC,
                           _______,  _______, _______, _______, _______,
 
         _______,      MO(_MVMT),
@@ -158,9 +158,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_MVMT] = LAYOUT_ergodox(
 	// left hand
    _______, _______, _______, _______, _______, _______, _______,
-   _______, _______,   KC_UP, _______, KC_PGUP, _______, _______,
-   _______, KC_LEFT, KC_DOWN,KC_RIGHT, KC_HOME,  KC_END,
-   _______, _______, _______, _______, KC_PGDN, _______, _______,
+   _______, _______,    KC_7,    KC_8,    KC_9, _______, _______,
+   _______, _______,    KC_4,    KC_5,    KC_6,    KC_0,
+   _______, _______,    KC_1,    KC_2,    KC_3, _______, _______,
    _______, _______, _______, _______, _______,
 												  _______, _______,
 														   _______,
