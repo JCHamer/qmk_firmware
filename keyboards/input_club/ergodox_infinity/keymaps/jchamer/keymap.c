@@ -169,8 +169,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	// right hand
    _______, _______, _______, _______, _______, _______, _______,
    _______, KC_DOWN,KC_RIGHT, KC_PGUP, _______, _______, _______,
-			KC_LEFT, KC_HOME,  KC_END,  KC_TAB, _______, _______,
-   _______,   KC_UP, _______, KC_PGDN, _______, _______, _______,
+			_______, KC_HOME,  KC_END,  KC_TAB, _______, _______,
+   _______,   KC_UP, KC_LEFT, KC_PGDN, _______, _______, _______,
 					 _______, _______, _______, _______, _______,
    _______, _______,
    _______,
@@ -254,11 +254,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                       _______, _______, _______,
 
   // right hand
-   KC_NUM, KC_NO, KC_NO, KC_PSLS, KC_PAST, KC_PMNS, _______,
-  _______, KC_NO, KC_P7, KC_P8,   KC_P9,   KC_PPLS, _______,
-           KC_NO, KC_P4, KC_P5,   KC_P6,   KC_PPLS, _______,
-  _______, KC_NO, KC_P1, KC_P2,   KC_P3,   KC_PENT, _______,
-			      KC_P0, KC_P0,   KC_PDOT, KC_PCMM, KC_PEQL,
+  _______, _______, KC_NUM, KC_PSLS, KC_PAST, KC_PMNS, _______,
+  _______, _______,  KC_P7, KC_P8,   KC_P9,   KC_PPLS, _______,
+           _______,  KC_P4, KC_P5,   KC_P6,   KC_PPLS, _______,
+  _______, _______,  KC_P1, KC_P2,   KC_P3,   KC_PENT, _______,
+			         KC_P0, KC_P0,   KC_PDOT, KC_PCMM, KC_PEQL,
 
   _______, _______,
   _______,
