@@ -6,7 +6,7 @@
 #include "ergodox_infinity.h"
 
 enum custom_layers {
-  _COLEMAK,
+  _COLEMAKDH,
   _MVMT,
   _MODS,
   _NUM//,
@@ -64,12 +64,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                              |    |     |L-NUM |          |  DEL |     |     |
  *                              `-----------------'          `------------------'
  */
-[_COLEMAK] = LAYOUT_ergodox(
+[_COLEMAKDH] = LAYOUT_ergodox(
   // left hand
 	KC_EQL,    KC_1,    KC_2,    KC_3,    KC_4,             KC_5, _______,
-	KC_TAB,    KC_Q,    KC_W,    KC_F,    KC_P,             KC_G, _______,
-    KC_GRV,    KC_A,    KC_R,    KC_S,    KC_T,             KC_D,
-   KC_LBRC,    KC_Z,    KC_X,    KC_C,    KC_V,  LT(_MODS, KC_B), _______,
+	KC_TAB,    KC_Q,    KC_W,    KC_F,    KC_P,             KC_B, _______,
+    KC_GRV,    KC_A,    KC_R,    KC_S,    KC_T,             KC_G,
+   KC_LBRC,    KC_Z,    KC_X,    KC_C,    KC_D,  LT(_MODS, KC_V), _______,
    _______, _______, KC_LCTL, KC_LGUI, KC_LALT,
 
                                                                    _______, _______,
@@ -79,8 +79,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // right hand
       _______,  KC_6,    KC_7,     KC_8,    KC_9,    KC_0, LT(_MODS, KC_MINS),
       _______,	KC_J,	 KC_L,     KC_U,    KC_Y, KC_SCLN,      RGUI(KC_BSLS),
-				KC_H,    KC_N,     KC_E,    KC_I,    KC_O,     RCTL(KC_QUOTE),
-      _______,	KC_K,    KC_M,  KC_COMM,  KC_DOT, KC_SLSH,            KC_RBRC,
+				KC_M,    KC_N,     KC_E,    KC_I,    KC_O,     RCTL(KC_QUOTE),
+      _______,	KC_K,    KC_H,  KC_COMM,  KC_DOT, KC_SLSH,            KC_RBRC,
                           _______,  _______, _______, _______, _______,
 
         _______,      MO(_MVMT),
