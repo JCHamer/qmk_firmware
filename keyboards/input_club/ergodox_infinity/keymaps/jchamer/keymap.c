@@ -66,26 +66,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_COLEMAKDH] = LAYOUT_ergodox(
   // left hand
-	KC_EQL,    KC_1,    KC_2,    KC_3,    KC_4,             KC_5, _______,
-	KC_TAB,    KC_Q,    KC_W,    KC_F,    KC_P,             KC_B, _______,
-    KC_GRV,    KC_A,    KC_R,    KC_S,    KC_T,             KC_G,
-   KC_LBRC,    KC_Z,    KC_X,    KC_C,    KC_D,  LT(_MODS, KC_V), _______,
-   _______, _______, KC_LCTL, KC_LGUI, KC_LALT,
+          KC_EQL,    KC_1,    KC_2,    KC_3,    KC_4,             KC_5, _______,
+          KC_TAB,    KC_Q,    KC_W,    KC_F,    KC_P,             KC_B, _______,
+          KC_GRV,    KC_A,    KC_R,    KC_S,    KC_T,             KC_G,
+ LSFT_T(KC_LBRC),    KC_Z,    KC_X,    KC_C,    KC_D,  LT(_MODS, KC_V), _______,
+         _______, _______, KC_LCTL, KC_LGUI, KC_LALT,
 
-                                                                   _______, _______,
-                                                                            _______,
-                                       LSFT_T(KC_SPACE), LT(_MVMT, KC_ESC), _______,
+                                                           _______, _______,
+                                                                    _______,
+                                       KC_SPACE, LT(_MVMT, KC_ESC), _______,
 
   // right hand
       _______,  KC_6,    KC_7,     KC_8,    KC_9,    KC_0, LT(_MODS, KC_MINS),
-      _______,	KC_J,	 KC_L,     KC_U,    KC_Y, KC_SCLN,      RGUI(KC_BSLS),
-				KC_M,    KC_N,     KC_E,    KC_I,    KC_O,     RCTL(KC_QUOTE),
-      _______,	KC_K,    KC_H,  KC_COMM,  KC_DOT, KC_SLSH,            KC_RBRC,
+      _______,	KC_J,	 KC_L,     KC_U,    KC_Y, KC_SCLN,            KC_BSLS,
+				KC_M,    KC_N,     KC_E,    KC_I,    KC_O,           KC_QUOTE,
+      _______,	KC_K,    KC_H,  KC_COMM,  KC_DOT, KC_SLSH,    RSFT_T(KC_RBRC),
                           _______,  _______, _______, _______, _______,
 
-        _______,      MO(_MVMT),
+        _______, MO(_MVMT),
       MO(_MVMT),
-         KC_DEL, RSFT_T(KC_ENT), KC_BSPC
+         KC_DEL,    KC_ENT, KC_BSPC
 ),
 
 /* Keymap 0: Basic QWERTY layer
@@ -213,7 +213,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    _______,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10, _______,
    _______, _______, KC_VOLU, _______, _______,  KC_F11, _______,
 			KC_MUTE, KC_MPLY, KC_MPRV, KC_MNXT,  KC_F12, _______,
-   _______, _______, KC_VOLD, _______, _______, _______, _______,
+   _______, _______, KC_VOLD, KC_RALT, KC_RGUI, KC_RCTL, _______,
 					 _______, _______, _______, _______, _______,
    _______, _______,
    _______,

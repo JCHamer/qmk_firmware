@@ -11,7 +11,9 @@
 #define ONESHOT_TAP_TOGGLE       2
 
 #undef  TAPPING_TERM
-#define TAPPING_TERM             175
+#define TAPPING_TERM             200
+
+#define PERMISSIVE_HOLD
 
 #define FORCE_NKRO
 
