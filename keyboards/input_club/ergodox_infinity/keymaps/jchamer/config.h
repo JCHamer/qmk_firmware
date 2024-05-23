@@ -13,6 +13,9 @@
 #undef  TAPPING_TERM
 #define TAPPING_TERM             200
 
+// https://github.com/qmk/qmk_firmware/issues/19420#issuecomment-1372134274
+#define usb_lld_disconnect_bus(usbp) do {} while(0) 
+
 #define PERMISSIVE_HOLD
 
 #define FORCE_NKRO
