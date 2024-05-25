@@ -21,7 +21,8 @@ enum custom_layers {
   _COLEMAKDH,
   _MVMT,
   _MODS,
-  _NUM//,
+  _NUMROW,
+  _NUMPAD//,
   //_QWERTY
 };
 
@@ -82,22 +83,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
           KC_TAB,    KC_Q,    KC_W,    KC_F,    KC_P,             KC_B, _______,
           KC_GRV,  HOME_A,  HOME_R,  HOME_S,  HOME_T,             KC_G,
  LSFT_T(KC_LBRC),    KC_Z,    KC_X,    KC_C,    KC_D,  LT(_MODS, KC_V), _______,
-         _______, _______, KC_LCTL, KC_LGUI, KC_LALT,
+         _______, _______, _______, _______, _______,
 
-                                                           _______, _______,
-                                                                    _______,
-                                       KC_SPACE, LT(_MVMT, KC_ESC), _______,
+                                                           _______,     _______,
+                                                                        _______,
+                                       KC_SPACE, LT(_MVMT, KC_ESC), TT(_NUMROW),
 
   // right hand
-      _______,  KC_6,    KC_7,     KC_8,    KC_9,    KC_0, LT(_MODS, KC_MINS),
-      _______,	KC_J,	 KC_L,     KC_U,    KC_Y, KC_SCLN,            KC_BSLS,
+      _______,  KC_6,    KC_7,     KC_8,    KC_9,    KC_0,            KC_MINS,
+      _______,	KC_J,	 KC_L,     KC_U,    KC_Y, KC_SCLN, LT(_MODS, KC_BSLS),
 				KC_M,  HOME_N,   HOME_E,  HOME_I,  HOME_O,           KC_QUOTE,
-      _______,	KC_K,    KC_H,  KC_COMM,  KC_DOT, KC_SLSH,    RSFT_T(KC_RBRC),
-                          _______,  _______, _______, _______, _______,
+      _______,	KC_K,    KC_H,  KC_COMM,  KC_DOT, KC_SLSH, LT(_MVMT, KC_RBRC),
+                                _______,  _______, _______, _______,  _______,
 
-        _______, MO(_MVMT),
-      MO(_MVMT),
-         KC_DEL,    KC_ENT, KC_BSPC
+        _______,           _______,
+	    _______,
+         KC_DEL, LT(_MVMT, KC_ENT), KC_BSPC
 ),
 
 /* Keymap 0: Basic QWERTY layer
@@ -170,9 +171,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_MVMT] = LAYOUT_ergodox(
 	// left hand
    _______, _______, _______, _______, _______, _______, _______,
-   _______, _______,    KC_7,    KC_8,    KC_9, _______, _______,
-   _______, _______,    KC_4,    KC_5,    KC_6,    KC_0,
-   _______, _______,    KC_1,    KC_2,    KC_3, _______, _______,
+   _______, _______, _______, _______, _______, _______, _______,
+   _______, KC_LGUI, KC_LCTL, KC_LSFT, KC_LALT, _______,
+   _______, _______, _______, _______, _______, _______, _______,
    _______, _______, _______, _______, _______,
 												  _______, _______,
 														   _______,
@@ -212,24 +213,69 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_MODS] = LAYOUT_ergodox(
 	// left hand
-   _______,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5, _______,
-   _______, _______, _______, BL_DOWN, BL_TOGG,   BL_UP, _______,
-   _______, KC_CAPS, KC_EJCT, KC_PSCR, KC_CALC, _______,
-   _______, _______, _______, _______,TG(_NUM), _______, _______,
-   _______, _______, _______, _______, _______,
+   _______, _______, _______, _______,    _______, _______, _______,
+   _______, _______, _______, BL_DOWN,    BL_TOGG,   BL_UP, _______,
+   _______, KC_CAPS, KC_EJCT, KC_PSCR,    KC_CALC, _______,
+   _______, _______, _______, _______,TG(_NUMPAD), _______, _______,
+   _______, _______, _______, _______,    _______,
 												  _______, _______,
 														   _______,
 										 _______, _______, _______,
 
 	// right hand
-   _______,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10, _______,
-   _______, _______, KC_VOLU, _______, _______,  KC_F11, _______,
-			KC_MUTE, KC_MPLY, KC_MPRV, KC_MNXT,  KC_F12, _______,
+   _______, _______, _______, _______, _______, _______, _______,
+   _______, _______, KC_VOLU, _______, _______, _______, _______,
+			KC_MUTE, KC_MPLY, KC_MPRV, KC_MNXT, _______, _______,
    _______, _______, KC_VOLD, KC_RALT, KC_RGUI, KC_RCTL, _______,
 					 _______, _______, _______, _______, _______,
    _______, _______,
    _______,
    _______, _______, _______
+),
+
+/* Keymap 2: NumRow
+ *
+ * ,---------------------------------------------.           ,---------------------------------------------.
+ * | FLASH  |     |     |     |     |     |DEBUG |           | NUMLK|  ✗  |  ✗  |  /  |  *  |  -  |        |
+ * |--------+-----+-----+-----+-----+------------|           |------+-----+-----+-----+-----+-----+--------|
+ * |        | Home|  Up | End | PgUp|     |      |           |      |  ✗  |  7  |  8  |  9  |  +  |        |
+ * |--------+-----+-----+-----+-----+-----|      |           |      |-----+-----+-----+-----+-----+--------|
+ * |        | Left| Down|Right| PgDn|     |------|           |------|  ✗  |  4  |  5  |  6  |  +  |        |
+ * |--------+-----+-----+-----+-----+-----|      |           |      |-----+-----+-----+-----+-----+--------|
+ * |VERSION |  /  |  *  |  -  |  +  |ENTER|      |           |      |  ✗  |  1  |  2  |  3  |ENTER|        |
+ * `--------+-----+-----+-----+-----+------------'           `------------+-----+-----+-----+-----+--------'
+ *   |      |     |     |     |     |                                     |  0  |  0  |  .  |  ,  |   =  |
+ *   `------------------------------'                                     `------------------------------'
+ *                                   ,------------.          ,------------.
+ *                                   |     |      |          |      |     |
+ *                              ,----|-----|------|          |------+-----+-----.
+ *                              |    |     |      |          |      |     |     |
+ *                              |    |     |------|          |------|     |     |
+ *                              |    |     |      |          |      |     |     |
+ *                              `-----------------'          `------------------'
+ */
+[_NUMROW] = LAYOUT_ergodox(
+  // left hand
+ _______, _______, _______, _______, _______, _______, _______,
+  KC_EQL,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5, _______,
+  KC_F11, _______, _______, _______, _______, KC_LPRN,
+ _______,   KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5, _______,
+ _______, _______, _______, _______, _______,
+
+                                               _______, _______,
+                                                        _______,
+                                      _______, _______, _______,
+
+  // right hand
+  _______, _______, _______, _______, _______, _______, _______,
+  _______,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0, KC_MINS,
+           KC_RPRN, _______, _______, _______, _______,  KC_F12,
+  _______,   KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10, _______,
+                    _______, _______, _______, _______, _______,
+
+  _______, _______,
+  _______,
+  _______, _______,  _______
 ),
 
 /* Keymap 2: NumPad
@@ -253,7 +299,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                              |    |     |      |          |      |     |     |
  *                              `-----------------'          `------------------'
  */
-[_NUM] = LAYOUT_ergodox(
+[_NUMPAD] = LAYOUT_ergodox(
   // left hand
  _______, _______, _______, _______, _______, _______, _______,
  _______, _______, _______, _______, _______, _______, _______,
@@ -266,11 +312,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                       _______, _______, _______,
 
   // right hand
-  _______, _______, KC_NUM, KC_PSLS, KC_PAST, KC_PMNS, _______,
-  _______, _______,  KC_P7, KC_P8,   KC_P9,   KC_PPLS, _______,
-           _______,  KC_P4, KC_P5,   KC_P6,   KC_PPLS, _______,
-  _______, _______,  KC_P1, KC_P2,   KC_P3,   KC_PENT, _______,
-			         KC_P0, KC_P0,   KC_PDOT, KC_PCMM, KC_PEQL,
+  _______, _______, _______, _______, _______, _______, _______,
+  _______, KC_PCMM,   KC_P7,   KC_P8,   KC_P9, KC_PENT,  KC_NUM,
+           KC_PDOT,   KC_P4,   KC_P5,   KC_P6, KC_PPLS, KC_PAST,
+  _______,   KC_P0,   KC_P1,   KC_P2,   KC_P3, KC_PMNS, KC_PSLS,
+                    _______, _______, _______, _______, _______,
 
   _______, _______,
   _______,
@@ -328,6 +374,7 @@ void matrix_init_user(void) {
  * Runs constantly in the background, in a loop.
  */
 void matrix_scan_user(void) {
+  /*
   uint8_t layer = get_highest_layer(layer_state);
 
   ergodox_board_led_off();
@@ -340,9 +387,10 @@ void matrix_scan_user(void) {
       ergodox_right_led_1_on();
       ergodox_infinity_lcd_color(0, 30, 200);
       break;
-    case _NUM:
+    case _NUMPAD:
       ergodox_right_led_2_on();
       ergodox_infinity_lcd_color(220, 120, 0);
       break;
   }
+  */
 };
