@@ -85,9 +85,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  LSFT_T(KC_LBRC),    KC_Z,    KC_X,    KC_C,    KC_D,  LT(_MODS, KC_V), _______,
          _______, _______, _______, _______, _______,
 
-                                                           _______,     _______,
-                                                                        _______,
-                                       KC_SPACE, LT(_MVMT, KC_ESC), TT(_NUMROW),
+                                                           _______,              _______,
+                                                                                 _______,
+                                       KC_SPACE, LT(_MVMT, KC_ESC), LT(_NUMROW, _______),
 
   // right hand
       _______,  KC_6,    KC_7,     KC_8,    KC_9,    KC_0,            KC_MINS,
