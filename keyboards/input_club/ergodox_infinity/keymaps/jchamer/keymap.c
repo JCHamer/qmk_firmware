@@ -8,12 +8,14 @@
 // Left-hand home row mods
 #define HOME_A LGUI_T(KC_A)
 #define HOME_R LCTL_T(KC_R)
-#define HOME_S LSFT_T(KC_S)
+//#define HOME_S LSFT_T(KC_S)
+#define HOME_S KC_S
 #define HOME_T LALT_T(KC_T)
 
 // Right-hand home row mods
 #define HOME_N LALT_T(KC_N)
-#define HOME_E RSFT_T(KC_E)
+//#define HOME_E RSFT_T(KC_E)
+#define HOME_E KC_E
 #define HOME_I RCTL_T(KC_I)
 #define HOME_O RGUI_T(KC_O)
 
@@ -87,13 +89,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
                                                            _______,              _______,
                                                                                  _______,
-                                       KC_SPACE, LT(_MVMT, KC_ESC), LT(_NUMROW, _______),
+                                      LT(_MVMT, KC_SPACE), KC_LSFT,  LT(_NUMROW, KC_ESC),
 
   // right hand
       _______,  KC_6,    KC_7,     KC_8,    KC_9,    KC_0,            KC_MINS,
       _______,	KC_J,	 KC_L,     KC_U,    KC_Y, KC_SCLN, LT(_MODS, KC_BSLS),
 				KC_M,  HOME_N,   HOME_E,  HOME_I,  HOME_O,           KC_QUOTE,
-      _______,	KC_K,    KC_H,  KC_COMM,  KC_DOT, KC_SLSH, LT(_MVMT, KC_RBRC),
+      _______,	KC_K,    KC_H,  KC_COMM,  KC_DOT, KC_SLSH,    RSFT_T(KC_RBRC),
                                 _______,  _______, _______, _______,  _______,
 
         _______,           _______,
