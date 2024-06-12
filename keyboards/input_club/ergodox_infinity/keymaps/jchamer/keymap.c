@@ -397,7 +397,7 @@ void matrix_scan_user(void) {
   */
 };
 
-uint16_t get_tapping_term(uint16_t keycode, keyrecord *record) {
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 	switch (keycode) {
 		case LT(_MVMT, KC_SPACE):
 		case LT(_NUMROW, KC_ESC):
