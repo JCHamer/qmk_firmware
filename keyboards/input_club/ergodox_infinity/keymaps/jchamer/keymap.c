@@ -396,3 +396,14 @@ void matrix_scan_user(void) {
   }
   */
 };
+
+uint16_t get_tapping_term(uint16_t keycode, keyrecord *record) {
+	switch (keycode) {
+		case LT(_MVMT, KC_SPACE):
+		case LT(_NUMROW, KC_ESC):
+		case LT(_NUMROW, KC_DEL):
+			return 200;
+		default:
+			return TAPPING_TERM;
+	}
+}
