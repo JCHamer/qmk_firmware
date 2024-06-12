@@ -218,7 +218,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_F11,   KC_F1,   KC_F2,   KC_F3,      KC_F4,   KC_F5, _______,
    _______, _______, _______, BL_DOWN,    BL_TOGG,   BL_UP, _______,
    _______, KC_CAPS, KC_EJCT, KC_PSCR,    KC_CALC, _______,
-   _______, _______, _______, _______,TG(_NUMPAD), _______, _______,
+   _______, DT_DOWN, DT_PRNT,   DT_UP,TG(_NUMPAD), _______, _______,
    _______, _______, _______, _______,    _______,
 												  _______, _______,
 														   _______,
@@ -402,8 +402,8 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord *record) {
 		case LT(_MVMT, KC_SPACE):
 		case LT(_NUMROW, KC_ESC):
 		case LT(_NUMROW, KC_DEL):
-			return 200;
+			return 125;
 		default:
-			return TAPPING_TERM;
+			return g_tapping_term;
 	}
 }
