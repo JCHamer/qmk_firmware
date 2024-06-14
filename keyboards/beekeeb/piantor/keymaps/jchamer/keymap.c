@@ -53,6 +53,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
          KC_GRV, HOME_A, HOME_R, HOME_S,   HOME_T,                KC_G,                                      KC_M,              HOME_N,  HOME_E, HOME_I,  HOME_O,           KC_QUOTE,
 LSFT_T(KC_LBRC),   KC_Z,   KC_X,   KC_C,     KC_D,     LT(_MODS, KC_V),                                      KC_K,                KC_H, KC_COMM, KC_DOT, KC_SLSH, LT(_MVMT, KC_RBRC),
                               LT(_NUMROW, KC_ESC), LT(_MVMT, KC_SPACE), KC_LSFT,          RSFT_T(KC_ENT), KC_BSPC, LT(_NUMROW, KC_DEL)
+                              //LT(_MVMT, KC_SPACE),    KC_LSFT,LT(_NUMROW, KC_ESC),     LT(_NUMROW, KC_DEL), RSFT_T(KC_ENT),    KC_BSPC
 ),
 
 [_MVMT] = LAYOUT_split_3x6_3(
@@ -65,7 +66,7 @@ LSFT_T(KC_LBRC),   KC_Z,   KC_X,   KC_C,     KC_D,     LT(_MODS, KC_V),         
 [_MODS] = LAYOUT_split_3x6_3(
   _______, _______, _______, _______,    _______, _______,                         _______, KC_VOLU, _______, _______, _______, _______,
   _______, KC_CAPS, KC_EJCT, KC_PSCR,    KC_CALC, _______,                         KC_MUTE, KC_MPLY, KC_MPRV, KC_MNXT, _______, _______,
-  _______, _______, _______, _______,TG(_NUMPAD), _______,                         _______, KC_VOLD, KC_RALT, KC_RGUI, KC_RCTL, _______,
+  _______, DT_DOWN, DT_PRNT,   DT_UP,TG(_NUMPAD), _______,                         _______, KC_VOLD, KC_RALT, KC_RGUI, KC_RCTL, _______,
                                          _______, _______, _______,       _______, _______, _______
 ),
 
@@ -78,8 +79,8 @@ LSFT_T(KC_LBRC),   KC_Z,   KC_X,   KC_C,     KC_D,     LT(_MODS, KC_V),         
 
 [_NUMPAD] = LAYOUT_split_3x6_3(
   _______, _______, _______, _______, _______, _______,                         KC_PCMM,   KC_P7,   KC_P8,   KC_P9, KC_PENT,  KC_NUM,
-  _______, _______, _______, _______, _______, _______,                         KC_PDOT,   KC_P4,   KC_P5,   KC_P6, KC_PPLS, KC_PAST,
-  _______, _______, _______, _______, _______, _______,                           KC_P0,   KC_P1,   KC_P2,   KC_P3, KC_PMNS, KC_PSLS,
+  _______, _______, _______, _______, _______, _______,                           KC_P0,   KC_P4,   KC_P5,   KC_P6, KC_PPLS, KC_PAST,
+  _______, _______, _______, _______, _______, _______,                         KC_PDOT,   KC_P1,   KC_P2,   KC_P3, KC_PMNS, KC_PSLS,
                                       _______, _______, _______,       _______, _______,  _______
 )
 
@@ -90,7 +91,7 @@ LSFT_T(KC_LBRC),   KC_Z,   KC_X,   KC_C,     KC_D,     LT(_MODS, KC_V),         
  */
 void matrix_init_user(void) {
 
-};
+}
 
 /**
  * Runs constantly in the background, in a loop.
@@ -115,4 +116,15 @@ void matrix_scan_user(void) {
       break;
   }
   */
-};
+}
+
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+	switch (keycode) {
+		case LT(_MVMT, KC_SPACE):
+		case LT(_NUMROW, KC_ESC):
+		case LT(_NUMROW, KC_DEL):
+			return 125;
+		default:
+			return g_tapping_term;
+	}
+}
