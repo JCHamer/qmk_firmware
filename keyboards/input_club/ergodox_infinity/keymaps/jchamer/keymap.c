@@ -402,7 +402,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 		case LT(_MVMT, KC_SPACE):
 		case LT(_NUMROW, KC_ESC):
 		case LT(_NUMROW, KC_DEL):
-			return 125;
+			return 165;
 		default:
 			return g_tapping_term;
 	}
