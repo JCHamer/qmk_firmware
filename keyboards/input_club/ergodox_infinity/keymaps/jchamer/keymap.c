@@ -92,10 +92,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                       LT(_MVMT, KC_SPACE), KC_LSFT,  LT(_NUMROW, KC_ESC),
 
   // right hand
-      _______,  KC_6,    KC_7,     KC_8,    KC_9,    KC_0,            KC_MINS,
-      _______,	KC_J,	 KC_L,     KC_U,    KC_Y, KC_SCLN, LT(_MODS, KC_BSLS),
-				KC_M,  HOME_N,   HOME_E,  HOME_I,  HOME_O,           KC_QUOTE,
-      _______,	KC_K,    KC_H,  KC_COMM,  KC_DOT, KC_SLSH, LT(_MVMT, KC_RBRC),
+      _______,  KC_6,    KC_7,     KC_8,    KC_9,               KC_0,            KC_MINS,
+      _______,	KC_J,	 KC_L,     KC_U,    KC_Y, LT(_MODS, KC_SCLN), LT(_MODS, KC_BSLS),
+				KC_M,  HOME_N,   HOME_E,  HOME_I,             HOME_O,           KC_QUOTE,
+      _______,	KC_K,    KC_H,  KC_COMM,  KC_DOT, LT(_MVMT, KC_SLSH), LT(_MVMT, KC_RBRC),
                                 _______,  _______, _______, _______,  _______,
 
              _______,        _______,
@@ -173,9 +173,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_MVMT] = LAYOUT_ergodox(
 	// left hand
    _______, _______, _______, _______, _______, _______, _______,
-   _______, _______, _______, _______, _______, _______, _______,
-   _______, KC_LGUI, KC_LCTL, KC_LSFT, KC_LALT, _______,
-   _______, _______, _______, _______, _______, _______, _______,
+   _______,  KC_GRV,  KC_EQL,  KC_TAB, KC_BSLS, _______, _______,
+   _______, KC_LGUI, KC_LCTL, KC_LSFT, KC_LALT, KC_MINS,
+   _______, _______, _______, _______,KC_QUOTE, _______, _______,
    _______, _______, _______, _______, _______,
 												  _______, _______,
 														   _______,
@@ -183,7 +183,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 	// right hand
    _______, _______, _______, _______, _______, _______, _______,
-   _______, KC_DOWN,KC_RIGHT, KC_PGUP, _______, _______, _______,
+   _______, KC_DOWN,KC_RIGHT, KC_PGUP, KC_LBRC, KC_RBRC, _______,
 			_______, KC_HOME,  KC_END,  KC_TAB, _______, _______,
    _______,   KC_UP, KC_LEFT, KC_PGDN, _______, _______, _______,
 					 _______, _______, _______, _______, _______,
