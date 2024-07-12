@@ -11,6 +11,8 @@ UNICODE_ENABLE   = yes # Unicode
 SWAP_HANDS_ENABLE= yes # Allow swapping hands of keyboard
 SLEEP_LED_ENABLE = yes
 
+CAPS_WORD_ENABLE = yes
+
 RGBLIGHT_ENABLE = no
 
 SPLIT_KEYBOARD = yes

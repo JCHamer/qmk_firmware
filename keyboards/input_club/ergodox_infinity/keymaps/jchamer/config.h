@@ -8,6 +8,8 @@
 
 #define QUICK_TAP_TERM			100
 
+#define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD
+
 // https://github.com/qmk/qmk_firmware/issues/19420#issuecomment-1372134274
 #define usb_lld_disconnect_bus(usbp) do {} while(0) 
 
