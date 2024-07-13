@@ -277,14 +277,24 @@ void matrix_scan_user(void) {
   ergodox_right_led_2_off();
   ergodox_right_led_3_off();
 
+  ergodox_infinity_lcd_color(0, 0, 0);
+
   switch (layer) {
-    case _MODS:
-      ergodox_right_led_1_on();
+    case _MVMT:
+      //ergodox_right_led_1_on();
       ergodox_infinity_lcd_color(0, 30, 200);
       break;
-    case _NUMPAD:
-      ergodox_right_led_2_on();
+    case _NUMSYM:
+      //ergodox_right_led_2_on();
       ergodox_infinity_lcd_color(220, 120, 0);
+      break;
+    case _OSCTRL:
+      //ergodox_right_led_2_on();
+      ergodox_infinity_lcd_color(220, 120, 100);
+      break;
+    case _KBCTRL:
+      //ergodox_right_led_2_on();
+      ergodox_infinity_lcd_color(120, 220, 0);
       break;
   }
   */
