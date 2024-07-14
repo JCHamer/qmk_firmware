@@ -73,11 +73,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                       LT(_MVMT, KC_SPACE), KC_LSFT, TT(_NUMSYM),
 
  // right hand
-                _______,    _______, _______, _______, _______, _______, _______,
-                _______,       KC_J,    KC_L,    KC_U,    KC_Y, KC_SCLN, _______,
-                               KC_M,  HOME_N,  HOME_E,  HOME_I,  HOME_O, _______,
-                _______,       KC_K,    KC_H, KC_COMM,  KC_DOT, KC_SLSH, _______,
-                                     _______, _______, _______, _______, _______,
+                _______,           _______, _______, _______, _______, _______, _______,
+                _______,              KC_J,    KC_L,    KC_U,    KC_Y, KC_SCLN, _______,
+                                      KC_M,  HOME_N,  HOME_E,  HOME_I,  HOME_O, _______,
+                _______, LT(_NUMSYM, KC_K),    KC_H, KC_COMM,  KC_DOT, KC_SLSH, _______,
+                                            _______, _______, _______, _______, _______,
 
       _______,           _______,
       _______,
