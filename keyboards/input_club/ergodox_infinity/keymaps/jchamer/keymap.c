@@ -68,20 +68,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  _______,              KC_Z,    KC_X,    KC_C,    KC_D,    KC_V, _______,
  _______,           _______, _______, _______, _______,
 
-                                                           _______,     _______,
-                                                                        _______,
-                                      LT(_MVMT, KC_SPACE), KC_LSFT, TT(_NUMSYM),
+                                                           _______,      _______,
+                                                                         _______,
+                                      LT(_MVMT, KC_SPACE), KC_LSFT, OSL(_NUMSYM),
 
  // right hand
-                _______,           _______, _______, _______, _______, _______, _______,
-                _______,              KC_J,    KC_L,    KC_U,    KC_Y, KC_SCLN, _______,
-                                      KC_M,  HOME_N,  HOME_E,  HOME_I,  HOME_O, _______,
-                _______, LT(_NUMSYM, KC_K),    KC_H, KC_COMM,  KC_DOT, KC_SLSH, _______,
-                                            _______, _______, _______, _______, _______,
+                _______, _______, _______, _______, _______, _______, _______,
+                _______,    KC_J,    KC_L,    KC_U,    KC_Y, KC_SCLN, _______,
+                            KC_M,  HOME_N,  HOME_E,  HOME_I,  HOME_O, _______,
+                _______,    KC_K,    KC_H, KC_COMM,  KC_DOT, KC_SLSH, _______,
+                                  _______, _______, _______, _______, _______,
 
       _______,           _______,
       _______,
- OSL(_OSCTRL), LT(_MVMT, KC_ENT), KC_BSPC
+ OSL(_OSCTRL), LT(_MVMT, KC_ENT), LT(_NUMSYM, KC_BSPC)
 ),
 
 /* Keymap 0: Basic QWERTY layer
@@ -132,11 +132,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_MVMT] = LAYOUT_ergodox(
  // left hand
-   _______,     _______, _______, _______, _______, _______, _______,
-   _______,      KC_GRV,  KC_EQL,  KC_TAB, _______, _______, _______,
-   _______,     KC_LGUI, KC_LCTL, KC_LSFT, KC_LALT,  LAYER0,
-   _______, TO(_KBCTRL), _______, _______,  KC_ESC, _______, _______,
-   _______,     _______, _______, _______, _______,
+   _______,     _______, _______, _______,     _______, _______, _______,
+   _______,      KC_GRV,  KC_EQL,  KC_TAB, TO(_NUMSYM), _______, _______,
+   _______,     KC_LGUI, KC_LCTL, KC_LSFT,     KC_LALT,  LAYER0,
+   _______, TO(_KBCTRL), _______, _______,      KC_ESC, _______, _______,
+   _______,     _______, _______, _______,     _______,
                                                   _______, _______,
                                                            _______,
                                          _______, _______, _______,
@@ -155,9 +155,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_NUMSYM] = LAYOUT_ergodox(
   // left hand
  _______, _______, _______, _______, _______, _______, _______,
- _______, _______, _______, _______, _______, _______, _______,
+ _______, KC_SCLN, _______, _______, _______, _______, _______,
  _______, _______, _______, _______, _______,  LAYER0,
- _______,    KC_X, _______, _______, _______, KC_COMM, _______,
+ _______, _______,    KC_X, KC_COMM, _______, KC_COMM, _______,
  _______, _______, _______, _______, _______,
                                                _______, _______,
                                                         _______,
@@ -166,8 +166,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // right hank
   _______, _______, _______, _______, _______, _______, _______,
   _______, KC_PSLS,    KC_7,    KC_8,    KC_9,    KC_0, _______,
-           KC_PAST,    KC_4,    KC_5,    KC_6, KC_PPLS, _______,
-  _______,  KC_DOT,    KC_1,    KC_2,    KC_3, KC_MINS, _______,
+            KC_DOT,    KC_4,    KC_5,    KC_6, KC_PPLS, _______,
+  _______, KC_PAST,    KC_1,    KC_2,    KC_3, KC_MINS, _______,
                     _______, _______, _______, _______, _______,
   _______, _______,
   _______,
