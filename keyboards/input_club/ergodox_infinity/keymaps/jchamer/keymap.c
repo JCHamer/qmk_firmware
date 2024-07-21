@@ -201,7 +201,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    _______, _______, _______, _______, _______, _______, _______,
    _______, QK_BOOT, _______, BL_TOGG, BL_BRTG, _______, _______,
    _______,  QK_RBT, _______, _______, _______,  LAYER0,
-   _______, DT_DOWN, DT_PRNT,   DT_UP, _______, _______, _______,
+   _______, _______, _______, _______, _______, _______, _______,
    _______, _______, _______, _______,    _______,
                                                   _______, _______,
                                                            _______,
@@ -305,6 +305,6 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 		case LT(_MVMT, KC_SPACE):
 			return 165;
 		default:
-			return g_tapping_term;
+			return TAPPING_TERM;
 	}
 }
