@@ -23,8 +23,8 @@
 
 enum custom_layers {
   _COLEMAKDH,
-  _MVMT,
   _NUMSYM,
+  _MVMT,
   _OSCTRL,
   _KBCTRL//,
   //_QWERTY
@@ -35,6 +35,10 @@ enum custom_keycodes {
   EPRM,
   VRSN
 };
+
+uint8_t _hue;
+uint8_t _saturation;
+uint8_t _value;
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /*[_BLANK] = LAYOUT_ergodox(
@@ -130,28 +134,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 */
 
-[_MVMT] = LAYOUT_ergodox(
- // left hand
-   _______,     _______, _______, _______,     _______, _______, _______,
-   _______,      KC_GRV,  KC_EQL,  KC_TAB, TO(_NUMSYM), _______, _______,
-   _______,     KC_LGUI, KC_LCTL, KC_LSFT,     KC_LALT,  LAYER0,
-   _______, TO(_KBCTRL), _______, _______,      KC_ESC, _______, _______,
-   _______,     _______, _______, _______,     _______,
-                                                  _______, _______,
-                                                           _______,
-                                         _______, _______, _______,
-
- // right hand
-   _______, _______, _______, _______, _______, _______, _______,
-   _______, KC_DOWN,KC_RIGHT, KC_PGUP, KC_LBRC, KC_RBRC, _______,
-            KC_MINS, KC_HOME,  KC_END, _______,KC_QUOTE, _______,
-   _______,   KC_UP, KC_LEFT, KC_PGDN, _______, KC_BSLS, _______,
-                     _______, _______, _______, _______, _______,
-   _______, _______,
-   _______,
-   _______, _______,  KC_DEL
-),
-
 [_NUMSYM] = LAYOUT_ergodox(
   // left hand
  _______, _______, _______, _______, _______, _______, _______,
@@ -172,6 +154,28 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, _______,
   _______,
   _______, _______,  _______
+),
+
+[_MVMT] = LAYOUT_ergodox(
+ // left hand
+   _______,     _______, _______, _______,     _______, _______, _______,
+   _______,      KC_GRV,  KC_EQL,  KC_TAB, TO(_NUMSYM), _______, _______,
+   _______,     KC_LGUI, KC_LCTL, KC_LSFT,     KC_LALT,  LAYER0,
+   _______, TO(_KBCTRL), _______, _______,      KC_ESC, _______, _______,
+   _______,     _______, _______, _______,     _______,
+                                                  _______, _______,
+                                                           _______,
+                                         _______, _______, _______,
+
+ // right hand
+   _______, _______, _______, _______, _______, _______, _______,
+   _______, KC_DOWN,KC_RIGHT, KC_PGUP, KC_LBRC, KC_RBRC, _______,
+            KC_MINS, KC_HOME,  KC_END, _______,KC_QUOTE, _______,
+   _______,   KC_UP, KC_LEFT, KC_PGDN, _______, KC_BSLS, _______,
+                     _______, _______, _______, _______, _______,
+   _______, _______,
+   _______,
+   _______, _______,  KC_DEL
 ),
 
 [_OSCTRL] = LAYOUT_ergodox(
@@ -262,14 +266,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
  * Runs just one time when the keyboard initializes.
  */
 void matrix_init_user(void) {
+    _hue = 0;
+    _saturation = 238;
+    _value = 80;
 
 };
 
 /**
  * Runs constantly in the background, in a loop.
  */
-void matrix_scan_user(void) {
   /*
+void matrix_scan_user(void) {
   uint8_t layer = get_highest_layer(layer_state);
 
   ergodox_board_led_off();
@@ -297,8 +304,51 @@ void matrix_scan_user(void) {
       ergodox_infinity_lcd_color(120, 220, 0);
       break;
   }
-  */
 };
+
+uint8_t select_hue_by_layer(uint8_t layer, bool *isLayer0) {
+	*isLayer0 = false;
+
+    switch (layer) {
+        case 4:
+            return 85;
+        case 3:
+            return 120;
+        case 2:
+            return 180;
+        case 1:
+            return 220;
+        default:
+			*isLayer0 = true;
+            return 0;
+    }
+}
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+	static bool prevLayer0 = false;
+	bool isLayer0;
+
+    uint8_t hue = select_hue_by_layer(get_highest_layer(state), &isLayer0);
+	uint8_t	sat = rgblight_get_sat();
+	uint8_t val = rgblight_get_val();
+
+	if (!prevLayer0 && isLayer0) {
+		_saturation = sat;
+		_value = val;
+
+		sat = 0;
+		val = 0;
+	} else if (prevLayer0 && !isLayer0) {
+		sat = _saturation;
+		val = _value;
+	}
+
+	prevLayer0 = isLayer0;
+
+    rgblight_sethsv(hue, sat, val);
+    return state;
+}
+*/
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 	switch (keycode) {
