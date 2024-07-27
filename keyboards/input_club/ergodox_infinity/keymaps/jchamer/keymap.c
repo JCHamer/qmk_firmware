@@ -30,16 +30,6 @@ enum custom_layers {
   //_QWERTY
 };
 
-enum custom_keycodes {
-  PLACEHOLDER = SAFE_RANGE, // can always be here
-  EPRM,
-  VRSN
-};
-
-uint8_t _hue;
-uint8_t _saturation;
-uint8_t _value;
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /*[_BLANK] = LAYOUT_ergodox(
 	// left hand
@@ -175,7 +165,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                      _______, _______, _______, _______, _______,
    _______, _______,
    _______,
-   _______, _______,  KC_DEL
+    KC_DEL, _______, _______
 ),
 
 [_OSCTRL] = LAYOUT_ergodox(
@@ -223,132 +213,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 )
 
 };
-
-/*
-const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
-{
-  // MACRODOWN only works in this function
-  switch(id) {
-    case 0:
-      if (record->event.pressed) {
-        SEND_STRING (QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION);
-      }
-      break;
-    case 1:
-      if (record->event.pressed) { // For resetting EEPROM
-        eeconfig_init();
-      }
-      break;
-  }
-  return MACRO_NONE;
-};
-*/
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-	switch (keycode) {
-		case PLACEHOLDER:
-			return false;
-		case EPRM:
-			if (record->event.pressed) {
-				eeconfig_init();
-			}
-			return false;
-		case VRSN:
-			if (record->event.pressed) {
-				SEND_STRING (QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION);
-			}
-			return false;
-	}
-	return true;
-}
-
-/**
- * Runs just one time when the keyboard initializes.
- */
-void matrix_init_user(void) {
-    _hue = 0;
-    _saturation = 238;
-    _value = 80;
-
-};
-
-/**
- * Runs constantly in the background, in a loop.
- */
-  /*
-void matrix_scan_user(void) {
-  uint8_t layer = get_highest_layer(layer_state);
-
-  ergodox_board_led_off();
-  ergodox_right_led_1_off();
-  ergodox_right_led_2_off();
-  ergodox_right_led_3_off();
-
-  ergodox_infinity_lcd_color(0, 0, 0);
-
-  switch (layer) {
-    case _MVMT:
-      //ergodox_right_led_1_on();
-      ergodox_infinity_lcd_color(0, 30, 200);
-      break;
-    case _NUMSYM:
-      //ergodox_right_led_2_on();
-      ergodox_infinity_lcd_color(220, 120, 0);
-      break;
-    case _OSCTRL:
-      //ergodox_right_led_2_on();
-      ergodox_infinity_lcd_color(220, 120, 100);
-      break;
-    case _KBCTRL:
-      //ergodox_right_led_2_on();
-      ergodox_infinity_lcd_color(120, 220, 0);
-      break;
-  }
-};
-
-uint8_t select_hue_by_layer(uint8_t layer, bool *isLayer0) {
-	*isLayer0 = false;
-
-    switch (layer) {
-        case 4:
-            return 85;
-        case 3:
-            return 120;
-        case 2:
-            return 180;
-        case 1:
-            return 220;
-        default:
-			*isLayer0 = true;
-            return 0;
-    }
-}
-
-layer_state_t layer_state_set_user(layer_state_t state) {
-	static bool prevLayer0 = false;
-	bool isLayer0;
-
-    uint8_t hue = select_hue_by_layer(get_highest_layer(state), &isLayer0);
-	uint8_t	sat = rgblight_get_sat();
-	uint8_t val = rgblight_get_val();
-
-	if (!prevLayer0 && isLayer0) {
-		_saturation = sat;
-		_value = val;
-
-		sat = 0;
-		val = 0;
-	} else if (prevLayer0 && !isLayer0) {
-		sat = _saturation;
-		val = _value;
-	}
-
-	prevLayer0 = isLayer0;
-
-    rgblight_sethsv(hue, sat, val);
-    return state;
-}
-*/
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 	switch (keycode) {
