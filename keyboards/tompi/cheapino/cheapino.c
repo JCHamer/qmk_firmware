@@ -33,25 +33,17 @@ void keyboard_post_init_user(void) {
     //debug_keyboard=true;
     //debug_mouse=true;
 
-    // Store user selected rgb hsv:
-    _hue = rgblight_get_hue();
-    _saturation = rgblight_get_sat();
-    _value = rgblight_get_val();
+    // Hardcoded default values
+    _hue = 0;
+    _saturation = 238;
+    _value = 80;
 
     // Flash a little on start
     defer_exec(50, flash_led, NULL);
 }
 
-// Make the builtin RGB led show different colors per layer:
-// This seemed like a good idea but turned out pretty annoying,
-// to me at least... Uncomment the lines below to enable
-/*
-uint8_t get_hue(uint8_t layer) {
+uint8_t get_hue(uint8_t layer, bool *isLayer0) {
     switch (layer) {
-        case 6:
-            return 169;
-        case 5:
-            return 43;
         case 4:
             return 85;
         case 3:
@@ -61,15 +53,41 @@ uint8_t get_hue(uint8_t layer) {
         case 1:
             return 220;
         default:
+			*isLayer0 = true;
             return 0;
     }
 }
 
 layer_state_t layer_state_set_user(layer_state_t state) {
+	static bool prevLayer0 = false;
+	bool isLayer0;
+
+    uint8_t hue = get_hue(get_highest_layer(state), &isLayer0);
     uint8_t sat = rgblight_get_sat();
     uint8_t val = rgblight_get_val();
-    uint8_t hue = get_hue(get_highest_layer(state));
+
+	if (!prevLayer0 && isLayer0) {
+		_saturation = sat;
+		_value = val;
+
+		sat = 0;
+		val = 0;
+	} else if (prevLayer0 && !isLayer0) {
+		sat = _saturation;
+		val = _value;
+	}
+
+	prevLayer0 = isLayer0;
+
     rgblight_sethsv(hue, sat, val);
     return state;
 }
-*/
+
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+	switch (keycode) {
+		case LT(2, KC_SPACE):
+			return 165;
+		default:
+			return TAPPING_TERM;
+	}
+}

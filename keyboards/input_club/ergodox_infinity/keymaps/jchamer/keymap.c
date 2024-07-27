@@ -23,17 +23,11 @@
 
 enum custom_layers {
   _COLEMAKDH,
-  _MVMT,
   _NUMSYM,
+  _MVMT,
   _OSCTRL,
   _KBCTRL//,
   //_QWERTY
-};
-
-enum custom_keycodes {
-  PLACEHOLDER = SAFE_RANGE, // can always be here
-  EPRM,
-  VRSN
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -130,6 +124,28 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 */
 
+[_NUMSYM] = LAYOUT_ergodox(
+  // left hand
+ _______, _______, _______, _______, _______, _______, _______,
+ _______, KC_SCLN, _______, _______, _______, _______, _______,
+ _______, _______, _______, _______, _______,  LAYER0,
+ _______, _______,    KC_X, KC_COMM, _______, _______, _______,
+ _______, _______, _______, _______, _______,
+                                               _______, _______,
+                                                        _______,
+                                      _______, _______, _______,
+
+  // right hank
+  _______, _______, _______, _______, _______, _______, _______,
+  _______, KC_PSLS,    KC_7,    KC_8,    KC_9,    KC_0, _______,
+            KC_DOT,    KC_4,    KC_5,    KC_6, KC_PPLS, _______,
+  _______, KC_PAST,    KC_1,    KC_2,    KC_3, KC_MINS, _______,
+                    _______, _______, _______, _______, _______,
+  _______, _______,
+  _______,
+  _______, _______,  _______
+),
+
 [_MVMT] = LAYOUT_ergodox(
  // left hand
    _______,     _______, _______, _______,     _______, _______, _______,
@@ -149,29 +165,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                      _______, _______, _______, _______, _______,
    _______, _______,
    _______,
-   _______, _______,  KC_DEL
-),
-
-[_NUMSYM] = LAYOUT_ergodox(
-  // left hand
- _______, _______, _______, _______, _______, _______, _______,
- _______, KC_SCLN, _______, _______, _______, _______, _______,
- _______, _______, _______, _______, _______,  LAYER0,
- _______, _______,    KC_X, KC_COMM, _______, KC_COMM, _______,
- _______, _______, _______, _______, _______,
-                                               _______, _______,
-                                                        _______,
-                                      _______, _______, _______,
-
-  // right hank
-  _______, _______, _______, _______, _______, _______, _______,
-  _______, KC_PSLS,    KC_7,    KC_8,    KC_9,    KC_0, _______,
-            KC_DOT,    KC_4,    KC_5,    KC_6, KC_PPLS, _______,
-  _______, KC_PAST,    KC_1,    KC_2,    KC_3, KC_MINS, _______,
-                    _______, _______, _______, _______, _______,
-  _______, _______,
-  _______,
-  _______, _______,  _______
+    KC_DEL, _______, _______
 ),
 
 [_OSCTRL] = LAYOUT_ergodox(
@@ -201,7 +195,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    _______, _______, _______, _______, _______, _______, _______,
    _______, QK_BOOT, _______, BL_TOGG, BL_BRTG, _______, _______,
    _______,  QK_RBT, _______, _______, _______,  LAYER0,
-   _______, DT_DOWN, DT_PRNT,   DT_UP, _______, _______, _______,
+   _______, _______, _______, _______, _______, _______, _______,
    _______, _______, _______, _______,    _______,
                                                   _______, _______,
                                                            _______,
@@ -218,86 +212,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    _______, _______, _______
 )
 
-};
-
-/*
-const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
-{
-  // MACRODOWN only works in this function
-  switch(id) {
-    case 0:
-      if (record->event.pressed) {
-        SEND_STRING (QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION);
-      }
-      break;
-    case 1:
-      if (record->event.pressed) { // For resetting EEPROM
-        eeconfig_init();
-      }
-      break;
-  }
-  return MACRO_NONE;
-};
-*/
-
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-	switch (keycode) {
-		case PLACEHOLDER:
-			return false;
-		case EPRM:
-			if (record->event.pressed) {
-				eeconfig_init();
-			}
-			return false;
-		case VRSN:
-			if (record->event.pressed) {
-				SEND_STRING (QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION);
-			}
-			return false;
-	}
-	return true;
-}
-
-/**
- * Runs just one time when the keyboard initializes.
- */
-void matrix_init_user(void) {
-
-};
-
-/**
- * Runs constantly in the background, in a loop.
- */
-void matrix_scan_user(void) {
-  /*
-  uint8_t layer = get_highest_layer(layer_state);
-
-  ergodox_board_led_off();
-  ergodox_right_led_1_off();
-  ergodox_right_led_2_off();
-  ergodox_right_led_3_off();
-
-  ergodox_infinity_lcd_color(0, 0, 0);
-
-  switch (layer) {
-    case _MVMT:
-      //ergodox_right_led_1_on();
-      ergodox_infinity_lcd_color(0, 30, 200);
-      break;
-    case _NUMSYM:
-      //ergodox_right_led_2_on();
-      ergodox_infinity_lcd_color(220, 120, 0);
-      break;
-    case _OSCTRL:
-      //ergodox_right_led_2_on();
-      ergodox_infinity_lcd_color(220, 120, 100);
-      break;
-    case _KBCTRL:
-      //ergodox_right_led_2_on();
-      ergodox_infinity_lcd_color(120, 220, 0);
-      break;
-  }
-  */
 };
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
