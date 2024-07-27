@@ -72,7 +72,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 	static bool prevLayer0 = false;
 	bool isLayer0;
 
-    uint8_t hue = get_hue(get_highest_layer(state, &isLayer0));
+    uint8_t hue = get_hue(get_highest_layer(state), &isLayer0);
 	uint8_t	sat = rgblight_get_sat();
 	uint8_t val = rgblight_get_val();
 
