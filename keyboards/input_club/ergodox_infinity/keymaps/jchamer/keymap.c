@@ -1,9 +1,9 @@
 #include QMK_KEYBOARD_H
-#include "debug.h"
-#include "action_layer.h"
-#include "version.h"
+//#include "debug.h"
+//#include "action_layer.h"
+//#include "version.h"
 //#include "visualizer.h"
-#include "ergodox_infinity.h"
+//#include "ergodox_infinity.h"
 
 // Left-hand home row mods
 #define HOME_A LGUI_T(KC_A)
@@ -14,10 +14,10 @@
 
 // Right-hand home row mods
 #define HOME_N LALT_T(KC_N)
-#define HOME_E RSFT_T(KC_E)
+#define HOME_E LSFT_T(KC_E)
 //#define HOME_E KC_E
-#define HOME_I RCTL_T(KC_I)
-#define HOME_O RGUI_T(KC_O)
+#define HOME_I LCTL_T(KC_I)
+#define HOME_O LGUI_T(KC_O)
 
 #define LAYER0 TO(_COLEMAKDH)
 
@@ -128,7 +128,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // left hand
  _______, _______, _______, _______, _______, _______, _______,
  _______, KC_SCLN, _______, _______, _______, _______, _______,
- _______, _______, _______, _______, _______,  LAYER0,
+ _______, _______,  HOME_R, _______, _______,  LAYER0,
  _______, _______,    KC_X, KC_COMM, _______, _______, _______,
  _______, _______, _______, _______, _______,
                                                _______, _______,
@@ -138,8 +138,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   // right hank
   _______, _______, _______, _______, _______, _______, _______,
   _______, KC_PSLS,    KC_7,    KC_8,    KC_9,    KC_0, _______,
-            KC_DOT,    KC_4,    KC_5,    KC_6, KC_PPLS, _______,
-  _______, KC_PAST,    KC_1,    KC_2,    KC_3, KC_MINS, _______,
+           KC_MINS,    KC_4,    KC_5,    KC_6, KC_PPLS, _______,
+  _______, KC_PAST,    KC_1,    KC_2,    KC_3,  KC_DOT, _______,
                     _______, _______, _______, _______, _______,
   _______, _______,
   _______,
@@ -204,7 +204,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  // right hand
    _______, _______, _______, _______, _______, _______, _______,
    _______, _______, _______, _______, _______, QK_BOOT, _______,
-            _______, KC_RALT, _______, KC_RCTL, KC_RGUI, _______,
+            _______, KC_RALT, KC_RSFT, KC_RCTL, KC_RGUI, _______,
    _______, _______, _______, _______, BL_DOWN,   BL_UP, _______,
                      _______, _______, _______, _______, _______,
    _______, _______,

@@ -43,6 +43,7 @@ void keyboard_post_init_user(void) {
 }
 
 uint8_t get_hue(uint8_t layer, bool *isLayer0) {
+	*isLayer0 = false;
     switch (layer) {
         case 4:
             return 85;
@@ -52,6 +53,7 @@ uint8_t get_hue(uint8_t layer, bool *isLayer0) {
             return 180;
         case 1:
             return 220;
+        case 0:
         default:
 			*isLayer0 = true;
             return 0;
