@@ -135,7 +135,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                         _______,
                                       _______, _______, _______,
 
-  // right hank
+  // right hand
   _______, _______, _______, _______, _______, _______, _______,
   _______, KC_PSLS,    KC_7,    KC_8,    KC_9,    KC_0, _______,
            KC_MINS,    KC_4,    KC_5,    KC_6, KC_PPLS, _______,
