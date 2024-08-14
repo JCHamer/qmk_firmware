@@ -37,12 +37,12 @@
       "KC_COMM",
       "KC_DOT",
       "KC_SLSH",
+      "OSL(2)",
       "LT(1,KC_SPC)",
       "KC_LSFT",
-      "OSL(2)",
-      "OSL(1)",
       "LT(2,KC_ENT)",
-      "KC_BSPC"
+      "KC_BSPC",
+      "OSL(1)"
     ],
     [
       "KC_PSLS",
@@ -97,8 +97,8 @@
       "KC_LCTL",
       "KC_LSFT",
       "KC_LALT",
-      "TO(0)",
       "KC_MINS",
+	  "TO(0)",
       "KC_HOME",
       "KC_END",
       "KC_TRNS",
@@ -116,9 +116,9 @@
       "KC_TRNS",
       "KC_TRNS",
       "KC_TRNS",
-      "KC_DEL",
       "KC_TRNS",
-      "KC_TRNS"
+      "KC_TRNS",
+      "KC_DEL"
     ],
     [
       "KC_F10",
@@ -173,8 +173,8 @@
       "KC_TRNS",
       "KC_TRNS",
       "KC_TRNS",
-      "TO(0)",
       "KC_TRNS",
+	  "TO(0)",
       "KC_RALT",
       "KC_RSFT",
       "KC_RCTL",
