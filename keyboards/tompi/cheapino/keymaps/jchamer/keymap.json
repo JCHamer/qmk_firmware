@@ -40,9 +40,9 @@
       "LT(1,KC_SPC)",
       "KC_LSFT",
       "OSL(2)",
-      "OSL(1)",
       "LT(2,KC_ENT)",
-      "KC_BSPC"
+      "KC_BSPC",
+      "OSL(1)"
     ],
     [
       "KC_PSLS",
