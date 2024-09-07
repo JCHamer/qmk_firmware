@@ -66,6 +66,12 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
 };
 #endif // defined(ENCODER_ENABLE) && defined(ENCODER_MAP_ENABLE)
 
-
-
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+	switch (keycode) {
+		//case LT(2, KC_SPACE):
+		//	return 165;
+		default:
+			return TAPPING_TERM;
+	}
+}
 

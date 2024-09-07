@@ -6,3 +6,5 @@ DEFERRED_EXEC_ENABLE = yes
 SRC += encoder.c
 SRC += ghosting.c
 SRC += matrix.c
+
+#DYNAMIC_TAPPING_TERM_ENABLE = yes
