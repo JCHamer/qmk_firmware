@@ -1,19 +1,5 @@
 #include QMK_KEYBOARD_H
 
-// Left-hand home row mods
-#define HOME_A LGUI_T(KC_A)
-#define HOME_R LCTL_T(KC_R)
-#define HOME_S LSFT_T(KC_S)
-#define HOME_T LALT_T(KC_T)
-
-// Right-hand home row mods
-#define HOME_N LALT_T(KC_N)
-#define HOME_E LSFT_T(KC_E)
-#define HOME_I LCTL_T(KC_I)
-#define HOME_O LGUI_T(KC_O)
-
-#define LAYER0 TO(_COLEMAKDH)
-
 enum custom_layers {
   _COLEMAKDH,
   _NUMSYM,
@@ -22,12 +8,36 @@ enum custom_layers {
   _KBCTRL
 };
 
+enum custom_keycodes {
+	SMTD_KEYCODES_BEGIN = SAFE_RANGE,
+	// HRM - Left Hand
+	CKC_A,	// Reads as C(ustom) + KC_A
+	CKC_R,
+	CKC_S,
+	CKC_T,
+
+	// HRM - Right Hand
+	CKC_N,
+	CKC_E,
+	CKC_I,
+	CKC_O,
+
+	// Tap-Hold Backup Layer Control
+	CKC_SPC,
+	CKC_ENT,
+
+	SMTD_KEYCODES_END
+};
+#include "sm_td/sm_td.h"
+
+#define LAYER0 TO(_COLEMAKDH)
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_COLEMAKDH] = LAYOUT_split_3x5_3(
-		KC_Q, KC_W, KC_F, KC_P, KC_B,                         KC_J, KC_L, KC_U, KC_Y, KC_SCLN,
-		HOME_A, HOME_R, HOME_S, HOME_T, KC_G,                 KC_M, HOME_N, HOME_E, HOME_I, HOME_O,
-		KC_Z, KC_X, KC_C, KC_D, KC_V,                         KC_K, KC_H, KC_COMM, KC_DOT, KC_SLSH,
-		LT(_NUMSYM,KC_SPC), KC_LSFT, MO(_MVMT),               LT(_MVMT,KC_ENT), KC_BSPC, MO(_NUMSYM)
+  KC_Q,  KC_W,  KC_F,  KC_P, KC_B,                     KC_J, KC_L, KC_U, KC_Y, KC_SCLN,
+ CKC_A, CKC_R, CKC_S, CKC_T, KC_G,                 KC_M, CKC_N, CKC_E, CKC_I, CKC_O,
+  KC_Z,  KC_X,  KC_C,  KC_D, KC_V,                     KC_K, KC_H, KC_COMM, KC_DOT, KC_SLSH,
+ CKC_SPC, KC_LSFT, MO(_MVMT),          CKC_ENT, KC_BSPC, MO(_NUMSYM)
 ),
 
 [_NUMSYM] = LAYOUT_split_3x5_3(
@@ -72,6 +82,35 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 		//	return 165;
 		default:
 			return TAPPING_TERM;
+	}
+}
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+	if (!process_smtd(keycode, record)) {
+		return false;
+	}
+	// your code here
+	
+	return true;
+}
+
+void on_smtd_action(uint16_t keycode, smtd_action action, uint8_t tap_count) {
+	switch (keycode) {
+		// HRM - Left Hand
+		SMTD_MT(CKC_A, KC_A, KC_LEFT_GUI)
+		SMTD_MT(CKC_R, KC_R, KC_LEFT_CTRL)
+		SMTD_MT(CKC_S, KC_S, KC_LEFT_SHIFT)
+		SMTD_MT(CKC_T, KC_T, KC_LEFT_ALT)
+
+		// HRM - Right Hand
+		SMTD_MT(CKC_N, KC_N, KC_LEFT_ALT)
+		SMTD_MT(CKC_E, KC_E, KC_LEFT_SHIFT)
+		SMTD_MT(CKC_I, KC_I, KC_LEFT_CTRL)
+		SMTD_MT(CKC_O, KC_O, KC_LEFT_GUI)
+
+		// Tap-Hold Backup Layer Control
+		SMTD_LT(CKC_SPC, KC_SPC, _NUMSYM)
+		SMTD_LT(CKC_ENT, KC_ENT, _MVMT)
 	}
 }
 
