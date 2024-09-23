@@ -26,6 +26,7 @@ enum custom_keycodes {
 	CKC_SPC,
 	CKC_ENT,
 
+	CKC_SFT, // Left-Hand Shift
 	CKC_RR, // Right-Hand R-Ctrl
 
 	SMTD_KEYCODES_END
@@ -39,7 +40,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_Q,  KC_W,    KC_F,    KC_P,      KC_B,           KC_J,    KC_L,        KC_U,   KC_Y, KC_SCLN,
  CKC_A, CKC_R,   CKC_S,   CKC_T,      KC_G,           KC_M,   CKC_N,       CKC_E,  CKC_I,   CKC_O,
   KC_Z,  KC_X,    KC_C,    KC_D,      KC_V,           KC_K,    KC_H,     KC_COMM, KC_DOT, KC_SLSH,
-               CKC_SPC, KC_LSFT, MO(_MVMT),        CKC_ENT, KC_BSPC, MO(_NUMSYM)
+               CKC_SPC, CKC_SFT, MO(_MVMT),        CKC_ENT, KC_BSPC, MO(_NUMSYM)
 ),
 
 [_NUMSYM] = LAYOUT_split_3x5_3(
@@ -91,14 +92,14 @@ void on_smtd_action(uint16_t keycode, smtd_action action, uint8_t tap_count) {
 	switch (keycode) {
 		// HRM - Left Hand
 		SMTD_MT(CKC_A, KC_A, KC_LEFT_GUI, 1, true)
-		SMTD_MTE(CKC_R, KC_R, KC_LEFT_CTRL, 1, true)
-		SMTD_MTE(CKC_S, KC_S, KC_LEFT_SHIFT, 1, true)
-		SMTD_MTE(CKC_T, KC_T, KC_LEFT_ALT, 1, true)
+		SMTD_MT(CKC_R, KC_R, KC_LEFT_CTRL, 1, true)
+		SMTD_MT(CKC_S, KC_S, KC_LEFT_SHIFT, 1, true)
+		SMTD_MT(CKC_T, KC_T, KC_LEFT_ALT, 1, true)
 
 		// HRM - Right Hand
-		SMTD_MTE(CKC_N, KC_N, KC_LEFT_ALT, 1, true)
-		SMTD_MTE(CKC_E, KC_E, KC_LEFT_SHIFT, 1, true)
-		SMTD_MTE(CKC_I, KC_I, KC_LEFT_CTRL, 1, true)
+		SMTD_MT(CKC_N, KC_N, KC_LEFT_ALT, 1, true)
+		SMTD_MT(CKC_E, KC_E, KC_LEFT_SHIFT, 1, true)
+		SMTD_MT(CKC_I, KC_I, KC_LEFT_CTRL, 1, true)
 		SMTD_MT(CKC_O, KC_O, KC_LEFT_GUI, 1, true)
 
 		// Tap-Hold Backup Layer Control
@@ -106,6 +107,10 @@ void on_smtd_action(uint16_t keycode, smtd_action action, uint8_t tap_count) {
 		SMTD_LT(CKC_ENT, KC_ENT, _MVMT, 1, false)
 
 		// Right-Hand R-Ctrl
-		SMTD_MT(CKC_RR, KC_R, KC_RIGHT_CTRL, 1, true)	}
+		SMTD_MT(CKC_RR, KC_R, KC_RIGHT_CTRL, 1, true)
+
+		// Left-Hand Shift
+		SMTD_MT(CKC_SFT, KC_LSFT, KC_LSFT)
+	}
 }
 
