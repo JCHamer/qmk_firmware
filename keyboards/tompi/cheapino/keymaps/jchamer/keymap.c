@@ -26,6 +26,8 @@ enum custom_keycodes {
 	CKC_SPC,
 	CKC_ENT,
 
+	CKC_RR, // Right-Hand R-Ctrl
+
 	SMTD_KEYCODES_END
 };
 #include "sm_td/sm_td.h"
@@ -41,8 +43,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 [_NUMSYM] = LAYOUT_split_3x5_3(
- KC_PSLS, KC_7,    KC_8,    KC_9,    KC_0,        _______, _______, _______, _______,      KC_SCLN,
- KC_PPLS, KC_4,    KC_5,    KC_6, KC_MINS,         LAYER0, _______, _______,   CKC_R,      _______,
+ KC_PSLS, KC_7,    KC_8,    KC_9,    KC_0,        _______, _______, _______, KC_RCTL,      KC_SCLN,
+ KC_PPLS, KC_4,    KC_5,    KC_6, KC_MINS,         LAYER0, KC_RALT, KC_RSFT,  CKC_RR,      KC_RGUI,
   KC_DOT, KC_1,    KC_2,    KC_3, KC_PAST,        _______, _______, KC_COMM,    KC_X, OSL(_OSCTRL),
                 _______, _______, _______,        _______, _______, _______
 ),
@@ -57,13 +59,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_OSCTRL] = LAYOUT_split_3x5_3(
  KC_F10, KC_F7,   KC_F8,   KC_F9, _______,        KC_MPRV, KC_MNXT, KC_VOLU, KC_EJCT,       KC_NUM,
  KC_F11, KC_F4,   KC_F5,   KC_F6, _______,         LAYER0, KC_CALC, KC_MUTE, CW_TOGG,      KC_CAPS,
- KC_F12, KC_F1,   KC_F2,   KC_F3, _______,        _______, _______, KC_VOLD, KC_MPLY, OSL(_KBCTRL),
+ KC_F12, KC_F1,   KC_F2,   KC_F3, _______,        _______, KC_PSCR, KC_VOLD, KC_MPLY, OSL(_KBCTRL),
                 _______, _______, _______,        _______, _______, _______
 ),
 
 [_KBCTRL] = LAYOUT_split_3x5_3(
  QK_BOOT, _______, _______, _______, _______,        _______, RGB_HUI, RGB_SAI, RGB_VAI, QK_BOOT,
-  QK_RBT, _______, _______, _______, _______,         LAYER0, KC_RALT, KC_RSFT, KC_RCTL, KC_RGUI,
+  QK_RBT, _______, _______, _______, _______,         LAYER0, _______, _______, _______, _______,
  _______, _______, _______, _______, _______,        _______, RGB_HUD, RGB_SAD, RGB_VAD, _______,
                    _______, _______, _______,        _______, _______, _______
 )
@@ -75,15 +77,6 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
 
 };
 #endif // defined(ENCODER_ENABLE) && defined(ENCODER_MAP_ENABLE)
-
-uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
-	switch (keycode) {
-		//case LT(2, KC_SPACE):
-		//	return 165;
-		default:
-			return TAPPING_TERM;
-	}
-}
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 	if (!process_smtd(keycode, record)) {
@@ -111,6 +104,8 @@ void on_smtd_action(uint16_t keycode, smtd_action action, uint8_t tap_count) {
 		// Tap-Hold Backup Layer Control
 		SMTD_LT(CKC_SPC, KC_SPC, _NUMSYM, 1, false)
 		SMTD_LT(CKC_ENT, KC_ENT, _MVMT, 1, false)
-	}
+
+		// Right-Hand R-Ctrl
+		SMTD_MT(CKC_RR, KC_R, KC_RIGHT_CTRL, 1, true)	}
 }
 
