@@ -40,7 +40,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_NUMSYM] = LAYOUT_split_3x5_3(
  KC_PSLS, KC_7,    KC_8,    KC_9,    KC_0,        _______, _______, _______, KC_RCTL,      KC_SCLN,
  KC_PPLS, KC_4,    KC_5,    KC_6, KC_MINS,         LAYER0, KC_RALT, KC_RSFT,  CKC_RR,      KC_RGUI,
-  KC_DOT, KC_1,    KC_2,    KC_3, KC_PAST,        _______, _______, KC_COMM,    KC_X, OSL(_OSCTRL),
+  KC_DOT, KC_1,    KC_2,    KC_3, KC_PAST,        _______, KC_BSPC, KC_COMM,    KC_X, OSL(_OSCTRL),
                 _______, _______, _______,        _______, _______, _______
 ),
 
