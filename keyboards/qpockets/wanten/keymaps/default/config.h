@@ -16,6 +16,10 @@
 
 #pragma once
 
+<<<<<<<< HEAD:keyboards/tominabox1/underscore33/rev1/keymaps/default_big_space/config.h
+/* Combos */
+#define COMBO_TERM 50
+========
 /*Modtaps*/
 #define TAPPING_TERM 145
 
@@ -23,3 +27,4 @@
 #ifdef COMBO_ENABLE
 #    define COMBO_TERM 25
 #endif
+>>>>>>>> tompi/cheapinov2:keyboards/qpockets/wanten/keymaps/default/config.h

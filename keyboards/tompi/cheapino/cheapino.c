@@ -38,6 +38,11 @@ void keyboard_post_init_user(void) {
     _saturation = 238;
     _value = 80;
 
+    // Store user selected rgb hsv:
+    //_hue = rgblight_get_hue();
+    //_saturation = rgblight_get_sat();
+    //_value = rgblight_get_val();
+
     // Flash a little on start
     defer_exec(50, flash_led, NULL);
 }
