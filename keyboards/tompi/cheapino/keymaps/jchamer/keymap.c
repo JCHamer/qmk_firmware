@@ -60,7 +60,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 [_KBCTRL] = LAYOUT_split_3x5_3(
  QK_BOOT, _______, _______, _______, _______,        _______, RGB_HUI, RGB_SAI, RGB_VAI, QK_BOOT,
-  QK_RBT, _______, _______, _______, _______,         LAYER0, _______, _______, _______, _______,
+  QK_RBT, _______, KC_BSPC,  KC_DEL, _______,         LAYER0, _______, _______, _______, _______,
  _______, _______, _______, _______, _______,        _______, RGB_HUD, RGB_SAD, RGB_VAD, _______,
                    _______, _______, _______,        _______, _______, _______
 )
